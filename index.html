@@ -1,159 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Robert Finley</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+<meta charset="UTF-8">
+<title>Advanced Dynamic Website (HTML + CSS Only)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    body {
-      background: #f4f6f8;
-      padding: 20px;
-    }
+<style>
+/* ================= RESET ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Segoe UI, Arial, sans-serif;
+}
 
-    .resume {
-      max-width: 800px;
-      background: #ffffff;
-      margin: auto;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+body{
+  min-height:100vh;
+  background:linear-gradient(120deg,#1e3c72,#2a5298);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
 
-    .header {
-      text-align: center;
-      border-bottom: 2px solid #333;
-      padding-bottom: 15px;
-      margin-bottom: 20px;
-    }
+/* ================= MAIN CARD ================= */
+.container{
+  background:#fff;
+  max-width:900px;
+  width:100%;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 20px 40px rgba(0,0,0,0.25);
+}
 
-    .header h1 {
-      font-size: 28px;
-      color: #333;
-    }
+header{
+  background:#1e3c72;
+  color:#fff;
+  padding:25px;
+  text-align:center;
+}
 
-    .header p {
-      font-size: 14px;
-      color: #555;
-      margin-top: 5px;
-    }
+header h1{
+  font-size:28px;
+}
 
-    .section {
-      margin-bottom: 20px;
-    }
+header p{
+  opacity:0.9;
+  margin-top:5px;
+}
 
-    .section h2 {
-      font-size: 18px;
-      color: #222;
-      border-bottom: 1px solid #ccc;
-      margin-bottom: 10px;
-      padding-bottom: 5px;
-    }
+/* ================= TABS ================= */
+.tabs{
+  display:flex;
+  background:#f0f0f0;
+}
 
-    .section p,
-    .section li {
-      font-size: 14px;
-      color: #444;
-      line-height: 1.6;
-    }
+.tabs label{
+  flex:1;
+  padding:15px;
+  text-align:center;
+  cursor:pointer;
+  font-weight:600;
+  transition:0.3s;
+}
 
-    ul {
-      margin-left: 20px;
-    }
+.tabs label:hover{
+  background:#ddd;
+}
 
-    .two-column {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
+input[type="radio"]{
+  display:none;
+}
 
-    .column {
-      flex: 1;
-      min-width: 250px;
-    }
+/* ================= CONTENT SECTIONS ================= */
+.content{
+  padding:30px;
+  display:none;
+  animation:fade 0.6s ease;
+}
 
-    .footer {
-      text-align: center;
-      font-size: 12px;
-      color: #777;
-      margin-top: 30px;
-    }
-  </style>
+#tab-home:checked ~ .sections #home,
+#tab-about:checked ~ .sections #about,
+#tab-skills:checked ~ .sections #skills,
+#tab-contact:checked ~ .sections #contact{
+  display:block;
+}
+
+#tab-home:checked ~ .tabs label[for="tab-home"],
+#tab-about:checked ~ .tabs label[for="tab-about"],
+#tab-skills:checked ~ .tabs label[for="tab-skills"],
+#tab-contact:checked ~ .tabs label[for="tab-contact"]{
+  background:#1e3c72;
+  color:#fff;
+}
+
+/* ================= HOME ================= */
+.hero{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.hero div{
+  background:#f7f7f7;
+  padding:20px;
+  border-radius:10px;
+}
+
+/* ================= SKILLS ================= */
+.skill{
+  margin-bottom:15px;
+}
+
+.skill span{
+  font-weight:600;
+}
+
+.bar{
+  height:12px;
+  background:#ddd;
+  border-radius:10px;
+  overflow:hidden;
+  margin-top:5px;
+}
+
+.bar::after{
+  content:"";
+  display:block;
+  height:100%;
+  width:var(--level);
+  background:linear-gradient(90deg,#1e3c72,#2a5298);
+  animation:load 1.5s ease;
+}
+
+/* ================= CONTACT ================= */
+.contact-card{
+  background:#f7f7f7;
+  padding:20px;
+  border-radius:10px;
+}
+
+.contact-card p{
+  margin-bottom:10px;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fade{
+  from{opacity:0; transform:translateY(10px);} 
+  to{opacity:1; transform:translateY(0);} 
+}
+
+@keyframes load{
+  from{width:0;} 
+  to{width:var(--level);} 
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:700px){
+  .hero{
+    grid-template-columns:1fr;
+  }
+}
+</style>
 </head>
 <body>
-  <div class="resume">
-    <!-- Header -->
-    <div class="header">
-      <h1>Finley Roberts</h1>
-      <p>Email: finleyroberts@example.com | Phone: +91-XXXXXXXXXX | manhattan, NYC</p>
-    </div>
 
-    <!-- Career Objective -->
-    <div class="section">
-      <h2>Software Developer</h2>
-      <p>
-        Motivated student seeking opportunities to apply my skills and gain
-        practical experience while contributing to organizational growth.
-      </p>
-    </div>
+<div class="container">
 
-    <!-- Education -->
-    <div class="section">
-      <h2>Education</h2>
-      <p><strong>B-TECH / Computer Science</strong></p>
-      <p>College / St.johnson</p>
-      <p>Year: 2022 - 2025</p>
-    </div>
+<header>
+  <h1>Advanced Dynamic Website</h1>
+  <p>Built using ONLY HTML & CSS (No JavaScript)</p>
+</header>
 
-    <!-- Skills and Projects -->
-    <div class="section two-column">
-      <div class="column">
-        <h2>Skills</h2>
-        <ul>
-          <li>HTML, CSS, JavaScript</li>
-          <li>Python / C / Java</li>
-          <li>Problem Solving</li>
-          <li>Communication Skills</li>
-        </ul>
+<!-- RADIO CONTROLS -->
+<input type="radio" name="tab" id="tab-home" checked>
+<input type="radio" name="tab" id="tab-about">
+<input type="radio" name="tab" id="tab-skills">
+<input type="radio" name="tab" id="tab-contact">
+
+<!-- TAB BUTTONS -->
+<div class="tabs">
+  <label for="tab-home">Home</label>
+  <label for="tab-about">About</label>
+  <label for="tab-skills">Skills</label>
+  <label for="tab-contact">Contact</label>
+</div>
+
+<!-- CONTENT -->
+<div class="sections">
+
+  <section class="content" id="home">
+    <div class="hero">
+      <div>
+        <h2>Welcome</h2>
+        <p>This website behaves dynamically using pure CSS techniques like radio buttons, animations, variables, and transitions.</p>
       </div>
-
-      <div class="column">
-        <h2>Projects</h2>
+      <div>
+        <h2>Features</h2>
         <ul>
-          <li>Student Management System</li>
-          <li>Expense Tracker App</li>
-          <li>Personal Portfolio Website</li>
+          <li>Tab-based navigation</li>
+          <li>Animated skill bars</li>
+          <li>Responsive layout</li>
+          <li>No JavaScript</li>
         </ul>
       </div>
     </div>
+  </section>
 
-    <!-- Certifications -->
-    <div class="section">
-      <h2>Certifications</h2>
-      <ul>
-        <li>Python Programming – Coursera</li>
-        <li>Web Development – Udemy</li>
-      </ul>
+  <section class="content" id="about">
+    <h2>About Me</h2>
+    <p>You can use this structure for portfolio, resume, or project showcase. All interactions are handled using CSS only.</p>
+  </section>
+
+  <section class="content" id="skills">
+    <h2>Skills</h2>
+
+    <div class="skill">
+      <span>HTML</span>
+      <div class="bar" style="--level:90%"></div>
     </div>
 
-    <!-- Personal Details -->
-    <div class="section">
-      <h2>Personal Details</h2>
-      <p>Date of Birth: DD/MM/YYYY</p>
-      <p>Languages Known: English, Tamil</p>
-      <p>Hobbies: Reading, Coding, Fitness</p>
+    <div class="skill">
+      <span>CSS</span>
+      <div class="bar" style="--level:85%"></div>
     </div>
 
-    <!-- Footer -->
-    <div class="footer">
-      <p>I hereby declare that the above information is true to the best of my knowledge.</p>
+    <div class="skill">
+      <span>Design</span>
+      <div class="bar" style="--level:70%"></div>
     </div>
-  </div>
+  </section>
+
+  <section class="content" id="contact">
+    <h2>Contact</h2>
+    <div class="contact-card">
+      <p>Email: yourmail@example.com</p>
+      <p>Phone: +91-XXXXXXXXXX</p>
+      <p>Location: India</p>
+    </div>
+  </section>
+
+</div>
+</div>
+
 </body>
 </html>
